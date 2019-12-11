@@ -2,41 +2,16 @@ class BellmanFord(object):
 
     def calculateShortestPath(self, graph, start):
         
-        #numVertices = graph.V
-        #numEdges = len(graph.edges)
-
-        #print ("numEdges = % d" %(numEdges))
-
         dist = [float("inf") for x in range(graph.V)]
         dist[start]=0.0
 
+        #calculate shortest paths from start vertex to all other vertices
         dist = self.calc(graph, dist, False)
 
-        return self.calc(graph, dist, True)
+        #rerun algorithm to find vertices which are part of a negative cycle
+        dist = self.calc(graph, dist, True)
 
-        #for i in range(0, numVertices-1):
-        #    #print("vertex: % d" %(i))
-        #    for j in range (numEdges):
-        #        #print("    edge: % d" %(j))
-        #        for edge in graph.getEdge(j):
-        #            #print '        ' + str(type(edge))
-        #            minDist = dist[edge.targetVertex]
-        #            newDist = dist[edge.startVertex] + edge.weight
-        #
-        #            if newDist < minDist:
-        #                dist[edge.targetVertex] = newDist
-        #
-        #for i in range(0, numVertices-1):
-        #    for j in range (numEdges):
-        #        for edge in graph.getEdge(j):
-        #
-        #            minDist = dist[edge.targetVertex]
-        #            newDist = dist[edge.startVertex] + edge.weight
-        #
-        #            if newDist < minDist:
-        #                dist[edge.targetVertex] = float("-inf") 
-        #
-        #return dist
+        return dist
 
     def calc(self, graph, dist, calcNegativeCosts):
 
@@ -44,11 +19,8 @@ class BellmanFord(object):
         numEdges = len(graph.edges)
 
         for i in range(0, numVertices-1):
-        #print("vertex: % d" %(i))
             for j in range (numEdges):
-                #print("    edge: % d" %(j))
                 for edge in graph.getEdge(j):
-                    #print '        ' + str(type(edge))
                     minDist = dist[edge.targetVertex]
                     newDist = dist[edge.startVertex] + edge.weight
 
@@ -59,4 +31,3 @@ class BellmanFord(object):
                             dist[edge.targetVertex] = newDist
         
         return dist
-
