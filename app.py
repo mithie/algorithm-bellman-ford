@@ -14,7 +14,7 @@ graph.addEdge(5, 3, 2)
 graph.addEdge(2, 6, 3)
 graph.addEdge(2, 7, 2)
 graph.addEdge(6, 7, 4)
-graph.addEdge(0, 7, 12)
+graph.addEdge(0, 7, 5)
 
 bellmanFord = BellmanFord()
 d = bellmanFord.calculateShortestPath(graph, 0)
