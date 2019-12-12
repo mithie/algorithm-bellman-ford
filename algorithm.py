@@ -6,14 +6,14 @@ class BellmanFord(object):
         dist[start]=0.0
 
         #calculate shortest paths from start vertex to all other vertices
-        dist = self.calc(graph, dist, False)
+        self.calc(graph, dist, False)
 
         #rerun algorithm to find vertices which are part of a negative cycle
-        dist = self.calc(graph, dist, True)
+        self.calc(graph, dist, True)
 
         return dist
 
-    def calc(self, graph, dist, calcNegativeCosts):
+    def calc(self, graph, dist, findNegativeCycle):
 
         numVertices = graph.V
         numEdges = len(graph.edges)
@@ -25,7 +25,7 @@ class BellmanFord(object):
                     newDist = dist[edge.startVertex] + edge.weight
 
                     if newDist < minDist:
-                        if calcNegativeCosts==True:
+                        if findNegativeCycle==True:
                             dist[edge.targetVertex] = float("-inf") 
                         else:
                             dist[edge.targetVertex] = newDist

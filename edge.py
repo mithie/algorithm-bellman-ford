@@ -6,4 +6,4 @@ class Edge(object):
         self.weight=weight
 
     def __repr__(self):
-        return repr("{from: " + str(self.startVertex) +  ", to: " + str(self.targetVertex) + ", weight: " + str(self.weight) + "}")
+        return repr("{from: % d, to: % d, weight: % 5.2f}" %(self.startVertex, self.targetVertex, self.weight))
